@@ -16,8 +16,10 @@ public class UserDao {
     }
 
     public User getUser(String username, String password) {
-        String sql = "SELECT id, role_id FROM user WHERE username = \'" + username
-                + "\' AND password = \'" + password + "\'";
+        String sql = "SELECT id, role_id " +
+                "FROM user " +
+                "WHERE username = \'" + username + "\' " +
+                "AND password = \'" + password + "\'";
         Connection connection = this.basicDao.getConnect();
         Statement statement = this.basicDao.getStatement(connection);
         ResultSet resultSet = this.basicDao.executeQuerySQL(statement, sql);
