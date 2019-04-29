@@ -4,7 +4,11 @@ import java.sql.*;
 
 public class BasicDao {
 
-    public Connection getConnect(String url, String username, String password) {
+    private static final String URL = "jdbc:mysql://localhost:3306/student_examination_sys?useSSL=false";
+    private static final String USERNAME = "root";
+    private static final String PASSWORD = "0717";
+
+    public Connection getConnect() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
         } catch (ClassNotFoundException e) {
@@ -13,7 +17,7 @@ public class BasicDao {
 
         Connection connection = null;
         try {
-            connection = DriverManager.getConnection(url, username, password);
+            connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
         } catch (SQLException e) {
             e.printStackTrace();
         }
