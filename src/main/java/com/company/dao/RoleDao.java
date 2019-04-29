@@ -18,10 +18,12 @@ public class RoleDao {
     }
 
     public Role getRole(int role_id) {
-        String selectRoleName = "SELECT name FROM role";
+        String sql = "SELECT name " +
+                "FROM role " +
+                "WHERE id = " + role_id;
         Connection connection = this.basicDao.getConnect();
         Statement statement = this.basicDao.getStatement(connection);
-        ResultSet resultSet = this.basicDao.executeQuerySQL(statement, selectRoleName);
+        ResultSet resultSet = this.basicDao.executeQuerySQL(statement, sql);
         Role role = null;
         try {
             String role_name = resultSet.getString("name");
