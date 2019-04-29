@@ -2,7 +2,6 @@ package main.java.com.company.dao;
 
 import main.java.com.company.model.Profile;
 import main.java.com.company.model.Role;
-import main.java.com.company.model.User;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -17,22 +16,18 @@ public class RoleDao {
         this.basicDao = new BasicDao();
     }
 
-    public Role getRole(int role_id) {
+    public Role getRole(int role_id) throws SQLException, ClassNotFoundException {
+        String role_name = this.queryRoleNameById(role_id).getString("name");
+        List<Profile> profiles = new ProfileDao().getProfile(role_id);
+        return new Role(role_id, role_name, profiles);
+    }
+
+    private ResultSet queryRoleNameById(int role_id) throws SQLException, ClassNotFoundException {
         String sql = "SELECT name " +
                 "FROM role " +
                 "WHERE id = " + role_id;
         Connection connection = this.basicDao.getConnect();
         Statement statement = this.basicDao.getStatement(connection);
-        ResultSet resultSet = this.basicDao.executeQuerySQL(statement, sql);
-        Role role = null;
-        try {
-            String role_name = resultSet.getString("name");
-            List<Profile> profiles = new ProfileDao().getProfile(role_id);
-            role = new Role(role_id, role_name, profiles);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        this.basicDao.closeConnection(resultSet, statement, connection);
-        return role;
+        return this.basicDao.executeQuerySQL(statement, sql);
     }
 }

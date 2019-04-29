@@ -15,25 +15,24 @@ public class UserDao {
         this.basicDao = new BasicDao();
     }
 
-    public User getUser(String username, String password) {
+    public User getUser(String username, String password) throws SQLException, ClassNotFoundException {
+        ResultSet userIdAndRoleId = this.queryUserIdAndRoleId(username, password);
+        int user_id = userIdAndRoleId.getInt("id");
+        int role_id = userIdAndRoleId.getInt("role_id");
+        Role role = new RoleDao().getRole(role_id);
+        User user = new User(user_id, username, password, role);
+        return user;
+    }
+
+    private ResultSet queryUserIdAndRoleId(String username, String password)
+            throws SQLException, ClassNotFoundException {
         String sql = "SELECT id, role_id " +
                 "FROM user " +
                 "WHERE username = \'" + username + "\' " +
                 "AND password = \'" + password + "\'";
         Connection connection = this.basicDao.getConnect();
         Statement statement = this.basicDao.getStatement(connection);
-        ResultSet resultSet = this.basicDao.executeQuerySQL(statement, sql);
-        User user = null;
-        try {
-            int user_id = resultSet.getInt("id");
-            int role_id = resultSet.getInt("role_id");
-            Role role = new RoleDao().getRole(role_id);
-            user = new User(user_id, username, password, role);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        this.basicDao.closeConnection(resultSet, statement, connection);
-        return user;
+        return this.basicDao.executeQuerySQL(statement, sql);
     }
 
 }

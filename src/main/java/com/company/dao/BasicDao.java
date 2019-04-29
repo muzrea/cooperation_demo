@@ -8,73 +8,37 @@ public class BasicDao {
     private static final String USERNAME = "root";
     private static final String PASSWORD = "0717";
 
-    public Connection getConnect() {
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        Connection connection = null;
-        try {
-            connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return connection;
+    public Connection getConnect() throws ClassNotFoundException, SQLException {
+        Class.forName("com.mysql.jdbc.Driver");
+        return DriverManager.getConnection(URL, USERNAME, PASSWORD);
     }
 
-    public Statement getStatement(Connection connection) {
-        Statement statement = null;
-        try {
-            statement = connection.createStatement();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return statement;
+    public Statement getStatement(Connection connection) throws SQLException {
+        return connection.createStatement();
     }
 
-    public ResultSet executeQuerySQL(Statement statement, String sql) {
-        ResultSet resultSet = null;
-        try {
-            resultSet = statement.executeQuery(sql);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return resultSet;
+    public ResultSet executeQuerySQL(Statement statement, String sql) throws SQLException {
+        return statement.executeQuery(sql);
     }
 
-    public void executeUpdateSQL(Statement statement, String sql) {
-        try {
-            statement.executeUpdate(sql);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+    public void executeUpdateSQL(Statement statement, String sql) throws SQLException {
+        statement.executeUpdate(sql);
     }
 
-    public void closeConnection(ResultSet resultSet, Statement statement, Connection connection) {
+    public void closeConnection(
+            ResultSet resultSet,
+            Statement statement,
+            Connection connection) throws SQLException {
         if (resultSet != null) {
-            try {
-                resultSet.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            resultSet.close();
         }
 
         if (statement != null) {
-            try {
-                statement.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            statement.close();
         }
 
         if (connection != null) {
-            try {
-                connection.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            connection.close();
         }
     }
 }

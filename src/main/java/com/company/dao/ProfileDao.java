@@ -15,25 +15,26 @@ public class ProfileDao {
     public ProfileDao() {
         this.basicDao = new BasicDao();
     }
-    public List<Profile> getProfile(int role_id) {
+
+    public List<Profile> getProfile(int role_id) throws SQLException, ClassNotFoundException {
+        ResultSet queryResultOfProfile = this.queryProfileOfSpecificRole(role_id);
+        List<Profile> profiles = new ArrayList<>();
+        while (queryResultOfProfile.next()) {
+            int profile_id = queryResultOfProfile.getInt("profile.id");
+            String profile_name = queryResultOfProfile.getString("name");
+            Profile profile = new Profile(profile_id, profile_name);
+            profiles.add(profile);
+        }
+        return profiles;
+    }
+
+    private ResultSet queryProfileOfSpecificRole(int role_id) throws SQLException, ClassNotFoundException {
         String sql = "SELECT profile.id, name " +
                 "FROM profile " +
                 "INNER JOIN role_profile ON profile.id = profile_id " +
                 "WHERE role_id = " + role_id;
         Connection connection = this.basicDao.getConnect();
         Statement statement = this.basicDao.getStatement(connection);
-        ResultSet resultSet = this.basicDao.executeQuerySQL(statement, sql);
-        List<Profile> profiles = new ArrayList<>();
-        try {
-            while (resultSet.next()) {
-                int profile_id = resultSet.getInt("profile.id");
-                String profile_name = resultSet.getString("name");
-                Profile profile = new Profile(profile_id, profile_name);
-                profiles.add(profile);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return profiles;
+        return this.basicDao.executeQuerySQL(statement, sql);
     }
 }
