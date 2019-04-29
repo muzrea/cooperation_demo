@@ -16,16 +16,17 @@ public class UserDao {
     }
 
     public User getUser(String username, String password) {
-        String sql = "SELECT id FROM user WHERE username = \'" + username
+        String sql = "SELECT id, role_id FROM user WHERE username = \'" + username
                 + "\' AND password = \'" + password + "\'";
         Connection connection = this.basicDao.getConnect();
         Statement statement = this.basicDao.getStatement(connection);
         ResultSet resultSet = this.basicDao.executeQuerySQL(statement, sql);
         User user = null;
         try {
-            int id = resultSet.getInt("id");
-            Role role = new RoleDao().getRole(id);
-            user = new User(id, username, password, role);
+            int user_id = resultSet.getInt("id");
+            int role_id = resultSet.getInt("role_id");
+            Role role = new RoleDao().getRole(role_id);
+            user = new User(user_id, username, password, role);
         } catch (SQLException e) {
             e.printStackTrace();
         }
