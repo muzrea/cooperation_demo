@@ -20,7 +20,7 @@ public class ProfileDao {
         ResultSet queryResultOfProfile = this.queryProfileOfSpecificRole(role_id);
         List<Profile> profiles = new ArrayList<>();
         while (queryResultOfProfile.next()) {
-            int profile_id = queryResultOfProfile.getInt("profile.id");
+            String profile_id = queryResultOfProfile.getString("profile.id");
             String profile_name = queryResultOfProfile.getString("name");
             Profile profile = new Profile(profile_id, profile_name);
             profiles.add(profile);

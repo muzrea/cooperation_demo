@@ -1,19 +1,19 @@
 package main.java.com.company.model;
 
 public class Profile {
-    private int id;
+    private String id;
     private String name;
 
-    public Profile(int id, String name) {
+    public Profile(String id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public int getId() {
+    public String getId() {
         return this.id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
