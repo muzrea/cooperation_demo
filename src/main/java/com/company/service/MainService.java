@@ -8,9 +8,9 @@ import java.sql.SQLException;
 
 public class MainService {
 
-    Prompt prompt = new Prompt();
-    Reader reader = new Reader();
-    UserService userService = new UserService();
+    private Prompt prompt = new Prompt();
+    private Reader reader = new Reader();
+    private UserService userService = new UserService();
 
     public void mainService() throws SQLException, ClassNotFoundException {
         this.prompt.promptWelcome();
@@ -19,7 +19,7 @@ public class MainService {
         this.prompt.promptOperationOptions(mainMenu);
     }
 
-    public void login() throws SQLException, ClassNotFoundException {
+    private void login() throws SQLException, ClassNotFoundException {
         this.prompt.promptInputUsername();
         String username = this.reader.readUserInput();
         this.prompt.promptInputPassword();
