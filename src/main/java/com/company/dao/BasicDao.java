@@ -4,7 +4,7 @@ import java.sql.*;
 
 public class BasicDao {
 
-    private static final String URL = "jdbc:mysql://localhost:3306/student_examination_sys?useSSL=false";
+    private static final String URL = "jdbc:mysql://localhost:3306/examination_management_sys?useSSL=false";
     private static final String USERNAME = "root";
     private static final String PASSWORD = "0717";
 

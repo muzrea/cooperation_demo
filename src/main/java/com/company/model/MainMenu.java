@@ -1,13 +1,18 @@
 package main.java.com.company.model;
 
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class MainMenu {
+    private String roleName;
     private Map<String, String> allOptions;
     private Map<String, String> availabelOptions;
 
     public MainMenu() {
+        this.allOptions = new HashMap<>();
+        this.availabelOptions = new HashMap<>();
         this.generateAllOptions();
     }
 
@@ -35,15 +40,23 @@ public class MainMenu {
         this.allOptions.put("5.", "退出");
     }
 
+    public String getRoleName() {
+        return this.roleName;
+    }
+
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
+    }
+
     public Map<String, String> getAllOptions() {
         return this.allOptions;
     }
 
-    public Map<String, String> getAvailabelOptions() {
+    public Map<String, String> getAvailableOptions() {
         return this.availabelOptions;
     }
 
-    public void setAvailabelOptions(List<Profile> profiles) {
-        this.availabelOptions = availabelOptions;
+    public void setAvailableOptions(List<Profile> profiles) {
+        profiles.forEach(item -> this.availabelOptions.put(item.getId(), this.allOptions.get(item.getId())));
     }
 }
