@@ -2,14 +2,14 @@ package main.java.com.company.service;
 
 import main.java.com.company.model.MainMenu;
 import main.java.com.company.tool.Prompt;
-import main.java.com.company.tool.ReadInput;
+import main.java.com.company.tool.Reader;
 
 import java.sql.SQLException;
 
 public class MainService {
 
     Prompt prompt = new Prompt();
-    ReadInput readInput = new ReadInput();
+    Reader reader = new Reader();
     UserService userService = new UserService();
 
     public void mainService() throws SQLException, ClassNotFoundException {
@@ -21,9 +21,9 @@ public class MainService {
 
     public void login() throws SQLException, ClassNotFoundException {
         this.prompt.promptInputUsername();
-        String username = this.readInput.readUserInput();
+        String username = this.reader.readUserInput();
         this.prompt.promptInputPassword();
-        String password = this.readInput.readUserInput();
+        String password = this.reader.readUserInput();
         boolean loginResult = this.userService.login(username, password);
         if (!loginResult) {
             this.prompt.promptIllegalLoginInfor();
