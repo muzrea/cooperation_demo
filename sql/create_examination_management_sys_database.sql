@@ -24,7 +24,7 @@ CREATE TABLE profile (
 CREATE TABLE role_profile (
 	id INT AUTO_INCREMENT,
     role_id INT,
-    profile_id INT,
+    profile_id VARCHAR(10),
     PRIMARY KEY (id)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
