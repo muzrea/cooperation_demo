@@ -5,16 +5,16 @@ import java.util.List;
 public class Student {
     private int id;
     private String name;
-    private int age;
     private String sex;
+    private int age;
     private String major;
     private List<Subject> subjects;
 
-    public Student(int id, String name, int age, String sex, String major) {
+    public Student(int id, String name, String sex, int age, String major) {
         this.id = id;
         this.name = name;
-        this.age = age;
         this.sex = sex;
+        this.age = age;
         this.major = major;
     }
 
@@ -34,20 +34,20 @@ public class Student {
         this.name = name;
     }
 
-    public int getAge() {
-        return this.age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
     public String getSex() {
         return this.sex;
     }
 
     public void setSex(String sex) {
         this.sex = sex;
+    }
+
+    public int getAge() {
+        return this.age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
     }
 
     public String getMajor() {
@@ -63,7 +63,7 @@ public class Student {
         return this.id + ", "
                 + this.name + ", "
                 + this.age + ", "
-                + this.sex + ","
+                + this.sex + ", "
                 + this.major;
     }
 }
