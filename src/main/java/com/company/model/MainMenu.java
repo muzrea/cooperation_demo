@@ -7,11 +7,11 @@ import java.util.Map;
 public class MainMenu {
     private String roleName;
     private Map<String, String> allOptions;
-    private Map<String, String> availabelOptions;
+    private Map<String, String> availableOptions;
 
     public MainMenu() {
         this.allOptions = new HashMap<>();
-        this.availabelOptions = new HashMap<>();
+        this.availableOptions = new HashMap<>();
         this.generateAllOptions();
     }
 
@@ -52,10 +52,17 @@ public class MainMenu {
     }
 
     public Map<String, String> getAvailableOptions() {
-        return this.availabelOptions;
+        return this.availableOptions;
     }
 
-    public void setAvailableOptions(List<Profile> profiles) {
-        profiles.forEach(item -> this.availabelOptions.put(item.getId(), this.allOptions.get(item.getId())));
+    public void setAvailableOptions(Role role) {
+        if (role.getName().equals("管理员")) {
+            this.availableOptions = this.allOptions;
+        } else {
+            role.getProfiles()
+                    .forEach(
+                            item -> this.availableOptions.put(item.getId(), this.allOptions.get(item.getId()))
+                    );
+        }
     }
 }

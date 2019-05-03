@@ -22,7 +22,7 @@ public class UserService {
     public MainMenu getMainMenu() {
         MainMenu mainMenu = new MainMenu();
         mainMenu.setRoleName(this.user.getRole().getName());
-        mainMenu.setAvailableOptions(this.user.getRole().getProfiles());
+        mainMenu.setAvailableOptions(this.user.getRole());
         return mainMenu;
     }
 }
