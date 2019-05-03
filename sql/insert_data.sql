@@ -59,3 +59,23 @@ VALUES
     (3, '4.1'),
     (3, '4.2'),
     (3, '5');
+    
+INSERT INTO student
+VALUES
+	(2, '李四', '男', 20, '计算机');
+    
+INSERT INTO teacher
+VALUES
+	(3, '王五', '女', 40);
+    
+INSERT INTO subject(name)
+VALUES
+	('数学');
+    
+INSERT INTO subject_teacher(subject_id, teacher_id)
+VALUES
+	(1, 3);
+    
+INSERT INTO score(student_id, subject_id, score)
+VALUES
+	(2, 1, 90);
