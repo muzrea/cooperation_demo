@@ -28,10 +28,9 @@ CREATE TABLE role_profile (
     PRIMARY KEY (id)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
-CREATE TABLE examination (
+CREATE TABLE subject (
 	id INT,
     name VARCHAR(20) NOT NULL,
-    time INT NOT NULL,
     PRIMARY KEY (id)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
@@ -47,6 +46,23 @@ CREATE TABLE score (
     student_id INT NOT NULL,
     subject_id INT NOT NULL,
     score DOUBLE NOT NULL,
+    PRIMARY KEY (id)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8;
+
+CREATE TABLE student (
+	id INT,
+    name VARCHAR(20) NOT NULL,
+    sex CHAR(1) NOT NULL,
+    age INT NOT NULL,
+    major VARCHAR(20) NOT NULL,
+    PRIMARY KEY (id)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8;
+
+CREATE TABLE teacher (
+	id INT,
+    name VARCHAR(20) NOT NULL,
+    sex CHAR(1) NOT NULL,
+    age INT NOT NULL,
     PRIMARY KEY (id)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
