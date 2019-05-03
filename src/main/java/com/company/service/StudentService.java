@@ -29,9 +29,9 @@ public class StudentService {
     }
 
     public void getStudentInforAndScoreByName() throws SQLException, ClassNotFoundException {
-        this.prompt.promptInptStudentName();
+        this.prompt.promptInputStudentName();
         String name = this.getStudentName();
-        Student student = this.studentDao.getStudentAndScoreByName(name);
+        Student student = this.studentDao.getStudentByName(name);
         this.print.printStudentInfor(student);
         this.print.printStudentScore(student);
     }

@@ -39,7 +39,7 @@ public class StudentDao {
         return this.basicDao.executeQuerySQL(statement, SQL);
     }
 
-    public Student getStudentAndScoreByName(String name) throws SQLException, ClassNotFoundException {
+    public Student getStudentByName(String name) throws SQLException, ClassNotFoundException {
         ResultSet resultSet = this.queryStudentByName(name);
         Student student = null;
         while (resultSet.next()) {

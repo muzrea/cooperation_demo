@@ -29,58 +29,12 @@ public class Prompt {
         System.out.println("\n您的输入有误，请输入操作对应的编号：");
     }
 
-    public void promptIllegalInput() {
-        System.out.println("\n您输入的格式有误，请重新输入：");
-    }
-
-    public void promptInsertStudentInfor() {
-        System.out.println("\n请输入学生信息：");
-        System.out.println("(格式：学号，姓名)");
-        System.out.println("(例如：2016001001，张三)");
-    }
-
-    public void promptInsertSubjectInfor() {
-        System.out.println("\n请输入课程信息：");
-        System.out.println("(格式：课程编号，课程名称)");
-        System.out.println("(例如：1001，语文)");
-    }
-
-    public void promptInsertTeacherInfor() {
-        System.out.println("\n请输入教师信息：");
-        System.out.println("(格式：教师编号，姓名)");
-        System.out.println("(例如：2016010001，张老师)");
-    }
-
-    public void promptInsertStudentScore() {
-        System.out.println("\n请输入学生成绩：");
-        System.out.println("(格式：学号，课程编号，成绩)");
-        System.out.println("(例如：2016001001，1001，80)");
-    }
-
-    public void promptInptStudentName() {
+    public void promptInputStudentName() {
         System.out.println("\n请输入学生姓名：");
     }
 
-    public void promptInputId() {
-        System.out.println("\n请指定学号\\教师编号\\课程编号：");
-    }
-
-    public void promptInputStudentId() {
-        System.out.println("\n请指定学生的学号：");
-    }
-
-    public void promptInputSubject() {
-        System.out.println("\n请指定课程的名称：");
-    }
-
-    public void promptInputTeacherId() {
-        System.out.println("\n请指定教师的编号：");
-    }
-
-    public void promptInputStudentAndSubject() {
-        System.out.println("\n请指定学生及课程：");
-        System.out.println("格式：学号，课程编号");
-        System.out.println("例如：2016001001，1001");
+    public void promptInputTeacherName() {
+        System.out.println("\n请输入教师姓名：");
     }
 
     public void promptCurrentInfor() {

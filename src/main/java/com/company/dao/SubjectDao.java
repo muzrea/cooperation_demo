@@ -19,7 +19,7 @@ public class SubjectDao {
     }
 
     public List<Subject> getAllSubjectByStudentId(int studentId) throws SQLException, ClassNotFoundException {
-        ResultSet resultSet = this.qureyAllSubjectByStudentId(studentId);
+        ResultSet resultSet = this.queryAllSubjectByStudentId(studentId);
         List<Subject> subjects = new ArrayList<>();
         while (resultSet.next()) {
             int id = resultSet.getInt("subject.id");
@@ -32,7 +32,7 @@ public class SubjectDao {
         return subjects;
     }
 
-    private ResultSet qureyAllSubjectByStudentId(int studentId) throws SQLException, ClassNotFoundException {
+    private ResultSet queryAllSubjectByStudentId(int studentId) throws SQLException, ClassNotFoundException {
         String sql = "SELECT subject.id, name, score " +
                 "FROM subject " +
                 "INNER JOIN score " +
