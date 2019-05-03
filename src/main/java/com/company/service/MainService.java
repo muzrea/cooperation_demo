@@ -15,7 +15,10 @@ public class MainService {
     private Prompt prompt = new Prompt();
     private Reader reader = new Reader();
     private Print print = new Print();
+
     private UserService userService = new UserService();
+
+    private StudentDao studentDao = new StudentDao();
 
     public void mainService() throws SQLException, ClassNotFoundException {
         this.prompt.promptWelcome();
@@ -25,9 +28,15 @@ public class MainService {
         String option = this.getOption(mainMenu);
         switch (option) {
             case "1.1.1":
-                StudentDao studentDao = new StudentDao();
-                List<Student> students = studentDao.getAllStudent();
+                List<Student> students = this.studentDao.getAllStudent();
                 this.print.printAllStudentInfor(students);
+                break;
+            case "1.1.2":
+                this.prompt.promptInptStudentName();
+                String name = this.getStudentName();
+                Student student = this.studentDao.getStudentAndScoreByName(name);
+                this.print.printStudentInfor(student);
+                this.print.printStudentScore(student);
                 break;
             default:
                 break;
@@ -58,5 +67,9 @@ public class MainService {
 
     private boolean verifyOption(String option, MainMenu mainMenu) {
         return mainMenu.getAvailableOptions().get(option) != null;
+    }
+
+    private String getStudentName() {
+        return this.reader.readUserInput();
     }
 }

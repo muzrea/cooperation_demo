@@ -57,6 +57,10 @@ public class Prompt {
         System.out.println("(例如：2016001001，1001，80)");
     }
 
+    public void promptInptStudentName() {
+        System.out.println("\n请输入学生姓名：");
+    }
+
     public void promptInputId() {
         System.out.println("\n请指定学号\\教师编号\\课程编号：");
     }

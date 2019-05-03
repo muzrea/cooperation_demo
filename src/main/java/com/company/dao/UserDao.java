@@ -16,11 +16,11 @@ public class UserDao {
     }
 
     public User getUser(String username, String password) throws SQLException, ClassNotFoundException {
-        ResultSet userIdAndRoleId = this.queryUserIdAndRoleId(username, password);
+        ResultSet resultSet = this.queryUserIdAndRoleId(username, password);
         User user = null;
-        while (userIdAndRoleId.next()) {
-            int user_id = userIdAndRoleId.getInt("id");
-            int role_id = userIdAndRoleId.getInt("role_id");
+        while (resultSet.next()) {
+            int user_id = resultSet.getInt("id");
+            int role_id = resultSet.getInt("role_id");
             Role role = new RoleDao().getRole(role_id);
             user = new User(user_id, username, password, role);
         }

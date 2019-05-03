@@ -13,27 +13,11 @@ public class Role {
         this.profiles = profiles;
     }
 
-    public int getId() {
-        return this.id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public String getName() {
         return this.name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public List<Profile> getProfiles() {
         return this.profiles;
-    }
-
-    public void setProfiles(List<Profile> profiles) {
-        this.profiles = profiles;
     }
 }

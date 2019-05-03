@@ -17,10 +17,10 @@ public class RoleDao {
     }
 
     public Role getRole(int role_id) throws SQLException, ClassNotFoundException {
-        ResultSet roleName = this.queryRoleNameById(role_id);
+        ResultSet resultSet = this.queryRoleNameById(role_id);
         Role role = null;
-        while (roleName.next()) {
-            String role_name = roleName.getString("name");
+        while (resultSet.next()) {
+            String role_name = resultSet.getString("name");
             List<Profile> profiles = new ProfileDao().getProfile(role_id);
             role = new Role(role_id, role_name, profiles);
         }

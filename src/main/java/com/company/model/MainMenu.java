@@ -1,7 +1,6 @@
 package main.java.com.company.model;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class MainMenu {
@@ -45,10 +44,6 @@ public class MainMenu {
 
     public void setRoleName(String roleName) {
         this.roleName = roleName;
-    }
-
-    public Map<String, String> getAllOptions() {
-        return this.allOptions;
     }
 
     public Map<String, String> getAvailableOptions() {

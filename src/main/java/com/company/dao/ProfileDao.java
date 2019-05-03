@@ -17,11 +17,11 @@ public class ProfileDao {
     }
 
     public List<Profile> getProfile(int role_id) throws SQLException, ClassNotFoundException {
-        ResultSet queryResultOfProfile = this.queryProfileOfSpecificRole(role_id);
+        ResultSet resultSet = this.queryProfileOfSpecificRole(role_id);
         List<Profile> profiles = new ArrayList<>();
-        while (queryResultOfProfile.next()) {
-            String profile_id = queryResultOfProfile.getString("profile.id");
-            String profile_name = queryResultOfProfile.getString("name");
+        while (resultSet.next()) {
+            String profile_id = resultSet.getString("profile.id");
+            String profile_name = resultSet.getString("name");
             Profile profile = new Profile(profile_id, profile_name);
             profiles.add(profile);
         }

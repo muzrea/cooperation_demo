@@ -12,4 +12,11 @@ public class Subject {
         this.teacher = teacher;
         this.score = score;
     }
+
+    @Override
+    public String toString() {
+        return this.id + ", " +
+                this.name + ", " +
+                this.score + ", ";
+    }
 }

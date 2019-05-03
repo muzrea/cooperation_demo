@@ -15,4 +15,8 @@ public class Print {
         System.out.println("\n" + student.toString());
     }
 
+    public void printStudentScore(Student student) {
+        student.getSubjects().forEach(subject -> System.out.println(subject.toString()));
+    }
+
 }

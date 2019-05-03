@@ -18,44 +18,12 @@ public class Student {
         this.major = major;
     }
 
-    public int getId() {
-        return this.id;
+    public List<Subject> getSubjects() {
+        return this.subjects;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getSex() {
-        return this.sex;
-    }
-
-    public void setSex(String sex) {
-        this.sex = sex;
-    }
-
-    public int getAge() {
-        return this.age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public String getMajor() {
-        return this.major;
-    }
-
-    public void setMajor(String major) {
-        this.major = major;
+    public void setSubjects(List<Subject> subjects) {
+        this.subjects = subjects;
     }
 
     @Override
