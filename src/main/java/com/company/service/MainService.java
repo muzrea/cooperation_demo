@@ -2,23 +2,19 @@ package main.java.com.company.service;
 
 import main.java.com.company.dao.StudentDao;
 import main.java.com.company.model.MainMenu;
-import main.java.com.company.model.Student;
 import main.java.com.company.tool.Print;
 import main.java.com.company.tool.Prompt;
 import main.java.com.company.tool.Reader;
 
 import java.sql.SQLException;
-import java.util.List;
 
 public class MainService {
 
     private Prompt prompt = new Prompt();
     private Reader reader = new Reader();
-    private Print print = new Print();
 
     private UserService userService = new UserService();
-
-    private StudentDao studentDao = new StudentDao();
+    private StudentService studentService = new StudentService();
 
     public void mainService() throws SQLException, ClassNotFoundException {
         this.prompt.promptWelcome();
@@ -28,15 +24,10 @@ public class MainService {
         String option = this.getOption(mainMenu);
         switch (option) {
             case "1.1.1":
-                List<Student> students = this.studentDao.getAllStudent();
-                this.print.printAllStudentInfor(students);
+                this.studentService.getAllStudentInfor();
                 break;
             case "1.1.2":
-                this.prompt.promptInptStudentName();
-                String name = this.getStudentName();
-                Student student = this.studentDao.getStudentAndScoreByName(name);
-                this.print.printStudentInfor(student);
-                this.print.printStudentScore(student);
+                this.studentService.getStudentInforAndScoreByName();
                 break;
             default:
                 break;
@@ -67,9 +58,5 @@ public class MainService {
 
     private boolean verifyOption(String option, MainMenu mainMenu) {
         return mainMenu.getAvailableOptions().get(option) != null;
-    }
-
-    private String getStudentName() {
-        return this.reader.readUserInput();
     }
 }
