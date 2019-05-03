@@ -1,11 +1,14 @@
 package main.java.com.company.model;
 
+import java.util.List;
+
 public class Student {
     private int id;
     private String name;
     private int age;
     private String sex;
     private String major;
+    private List<Subject> subjects;
 
     public Student(int id, String name, int age, String sex, String major) {
         this.id = id;
