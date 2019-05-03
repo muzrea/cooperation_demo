@@ -16,15 +16,15 @@ public class MainMenu {
     }
 
     private void generateAllOptions() {
-        this.allOptions.put("1.1.1", "所有学生信息");
-        this.allOptions.put("1.1.2", "指定学生姓名的信息以及所有课程的成绩");
-        this.allOptions.put("1.1.3", "指定老师的所有学生及其成绩");
-        this.allOptions.put("1.1.4", "指定课程的所有学生及其成绩");
-        this.allOptions.put("1.2.1", "所有课程信息");
-        this.allOptions.put("1.2.2", "指定课程名称的信息");
-        this.allOptions.put("1.2.3", "指定老师的所有课程信息");
-        this.allOptions.put("1.3.1", "所有老师信息");
-        this.allOptions.put("1.3.2", "指定老师信息");
+        this.allOptions.put("1.1.1", "查询所有学生信息");
+        this.allOptions.put("1.1.2", "查询指定学生姓名的信息以及所有课程的成绩");
+        this.allOptions.put("1.1.3", "查询指定老师的所有学生及其成绩");
+        this.allOptions.put("1.1.4", "查询指定课程的所有学生及其成绩");
+        this.allOptions.put("1.2.1", "查询所有课程信息");
+        this.allOptions.put("1.2.2", "查询指定课程名称的信息");
+        this.allOptions.put("1.2.3", "查询指定老师的所有课程信息");
+        this.allOptions.put("1.3.1", "查询所有老师信息");
+        this.allOptions.put("1.3.2", "查询指定老师信息");
         this.allOptions.put("2.1", "新增学生信息");
         this.allOptions.put("2.2", "新增课程信息");
         this.allOptions.put("2.3", "新增老师信息");
@@ -36,7 +36,7 @@ public class MainMenu {
         this.allOptions.put("4.1", "删除指定学生");
         this.allOptions.put("4.2", "删除指定课程");
         this.allOptions.put("4.3", "删除指定老师");
-        this.allOptions.put("5.", "退出");
+        this.allOptions.put("5", "退出");
     }
 
     public String getRoleName() {
