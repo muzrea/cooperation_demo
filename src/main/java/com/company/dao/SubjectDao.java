@@ -1,5 +1,6 @@
 package main.java.com.company.dao;
 
+import main.java.com.company.model.Student;
 import main.java.com.company.model.Subject;
 import main.java.com.company.model.Teacher;
 
@@ -43,24 +44,63 @@ public class SubjectDao {
         return this.basicDao.executeQuerySQL(statement, sql);
     }
 
-    public Subject getSubjectByTeacherName(String teacherName) throws SQLException, ClassNotFoundException {
+    public int getSubjectIdByTeacherName(String teacherName) throws SQLException, ClassNotFoundException {
         Teacher teacher = new TeacherDao().getTeacherByName(teacherName);
         ResultSet resultSet = this.querySubjectByTeacherId(teacher.getId());
+        int subjectId = 0;
+        while (resultSet.next()) {
+            subjectId = resultSet.getInt("subject_id");
+        }
+        return subjectId;
+    }
+
+    private ResultSet querySubjectByTeacherId(int teacherId) throws SQLException, ClassNotFoundException {
+        String sql = "SELECT subject_id " +
+                "FROM subject_teacher " +
+                "WHERE teacher_id = " + teacherId;
+        Connection connection = this.basicDao.getConnect();
+        Statement statement = this.basicDao.getStatement(connection);
+        return this.basicDao.executeQuerySQL(statement, sql);
+    }
+
+    public List<Integer> getStudentIdBySubjectId(int subjectId) throws SQLException, ClassNotFoundException {
+        ResultSet resultSet = this.queryStudentIdBySubjectId(subjectId);
+        List<Integer> idList = new ArrayList<>();
+        while (resultSet.next()) {
+            int studentId = resultSet.getInt("student_id");
+            idList.add(studentId);
+        }
+        return idList;
+    }
+
+    private ResultSet queryStudentIdBySubjectId(int subjectId) throws SQLException, ClassNotFoundException {
+        String sql = "SELECT student_id " +
+                "FROM score " +
+                "WHERE subject_id = " + subjectId;
+        Connection connection = this.basicDao.getConnect();
+        Statement statement = this.basicDao.getStatement(connection);
+        return this.basicDao.executeQuerySQL(statement, sql);
+    }
+
+    public Subject getSubjectByStudentIdAndSubjectId(int studentId, int subjectId) throws SQLException, ClassNotFoundException {
+        ResultSet resultSet = this.querySubjectByStudentIdAndSubjectId(studentId, subjectId);
         Subject subject = null;
         while (resultSet.next()) {
             int id = resultSet.getInt("subject.id");
             String name = resultSet.getString("name");
             double score = resultSet.getDouble("score");
+            Teacher teacher = new TeacherDao().getTeacherBySubjectId(id);
             subject = new Subject(id, name, teacher, score);
         }
         return subject;
     }
 
-    private ResultSet querySubjectByTeacherId(int teacherId) throws SQLException, ClassNotFoundException {
-        String sql = "SELECT subject.id, name, score " +
-                "FROM subject " +
-                "INNER JOIN score ON subject.id = subject_id " +
-                "INNER JOIN subject_teacher ON teacher_id = " + teacherId;
+    private ResultSet querySubjectByStudentIdAndSubjectId(int studentId, int subjectId) throws SQLException, ClassNotFoundException {
+        String sql = "SELECT subject.id, name, score\n" +
+                "FROM subject\n" +
+                "INNER JOIN score ON subject.id = subject_id\n" +
+                "WHERE subject_id = " + subjectId + "\n" +
+                "AND student_id = " + studentId;
         Connection connection = this.basicDao.getConnect();
         Statement statement = this.basicDao.getStatement(connection);
         return this.basicDao.executeQuerySQL(statement, sql);
