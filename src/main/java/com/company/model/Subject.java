@@ -13,6 +13,14 @@ public class Subject {
         this.score = score;
     }
 
+    public int getId() {
+        return this.id;
+    }
+
+    public double getScore() {
+        return this.score;
+    }
+
     @Override
     public String toString() {
         return this.id + ", " +

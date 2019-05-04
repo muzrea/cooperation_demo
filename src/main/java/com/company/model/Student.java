@@ -18,6 +18,14 @@ public class Student {
         this.major = major;
     }
 
+    public int getId() {
+        return this.id;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
     public List<Subject> getSubjects() {
         return this.subjects;
     }

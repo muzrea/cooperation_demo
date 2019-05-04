@@ -39,4 +39,11 @@ public class StudentService {
     private String getStudentName() {
         return this.reader.readUserInput();
     }
+
+    public void getStudentAndScoreByTeacher() throws SQLException, ClassNotFoundException {
+        this.prompt.promptInputTeacherName();
+        String teacherName = this.reader.readUserInput();
+        List<Student> students = this.studentDao.getStudentByTeacherName(teacherName);
+        this.print.printStudentsAndScore(students);
+    }
 }

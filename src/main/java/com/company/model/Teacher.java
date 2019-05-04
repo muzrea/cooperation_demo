@@ -12,4 +12,8 @@ public class Teacher {
         this.sex = sex;
         this.age = age;
     }
+
+    public int getId() {
+        return this.id;
+    }
 }

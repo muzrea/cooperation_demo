@@ -38,4 +38,23 @@ public class TeacherDao {
         Statement statement = this.basicDao.getStatement(connection);
         return this.basicDao.executeQuerySQL(statement, sql);
     }
+
+    public Teacher getTeacherByName(String name) throws SQLException, ClassNotFoundException {
+        ResultSet resultSet = this.queryTeacherByName(name);
+        Teacher teacher = null;
+        while (resultSet.next()) {
+            int id = resultSet.getInt("teacher.id");
+            String sex = resultSet.getString("sex");
+            int age = resultSet.getInt("age");
+            teacher = new Teacher(id, name, sex, age);
+        }
+        return teacher;
+    }
+
+    private ResultSet queryTeacherByName(String name) throws SQLException, ClassNotFoundException {
+        String sql = "SELECT * FROM teacher WHERE name = '" + name + "'";
+        Connection connection = this.basicDao.getConnect();
+        Statement statement = this.basicDao.getStatement(connection);
+        return this.basicDao.executeQuerySQL(statement, sql);
+    }
 }

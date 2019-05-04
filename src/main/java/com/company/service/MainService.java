@@ -29,6 +29,9 @@ public class MainService {
             case "1.1.2":
                 this.studentService.getStudentInforAndScoreByName();
                 break;
+            case "1.1.3":
+                this.studentService.getStudentAndScoreByTeacher();
+                break;
             default:
                 break;
         }

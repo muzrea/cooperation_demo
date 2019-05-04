@@ -19,4 +19,11 @@ public class Print {
         student.getSubjects().forEach(subject -> System.out.println(subject.toString()));
     }
 
+    public void printStudentsAndScore(List<Student> students) {
+        students.forEach(student -> {
+            System.out.print(student.getId() + ", " + student.getName() + ", ");
+            student.getSubjects().forEach(subject -> System.out.println(subject.getScore()));
+        });
+    }
+
 }
