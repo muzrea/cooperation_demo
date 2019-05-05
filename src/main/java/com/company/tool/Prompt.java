@@ -49,16 +49,6 @@ public class Prompt {
         System.out.println("\n记录修改后不可复原，请确认是否继续操作（Y/N）：");
     }
 
-    public void promptConfirmDeleteOperation() {
-        System.out.println("\n记录删除后不可复原，请确认是否删除（Y/N）：");
-    }
-
-    public void promptInputDataForReplacement() {
-        System.out.println("\n请输入您要修改的信息：");
-        System.out.println("(格式 --> 项目：内容)");
-        System.out.println("(例如 --> 姓名：张四)");
-    }
-
     public void promptOperationSucceed() {
         System.out.println("操作成功！");
     }
