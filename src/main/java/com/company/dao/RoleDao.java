@@ -10,11 +10,7 @@ import java.sql.Statement;
 import java.util.List;
 
 public class RoleDao {
-    private BasicDao basicDao;
-
-    public RoleDao() {
-        this.basicDao = new BasicDao();
-    }
+    private BasicDao basicDao = new BasicDao();
 
     public Role getRole(int role_id) throws SQLException, ClassNotFoundException {
         ResultSet resultSet = this.queryRoleNameById(role_id);

@@ -9,11 +9,7 @@ import java.sql.Statement;
 
 public class TeacherDao {
 
-    private BasicDao basicDao;
-
-    public TeacherDao() {
-        this.basicDao = new BasicDao();
-    }
+    private BasicDao basicDao = new BasicDao();
 
     public Teacher getTeacherBySubjectId(int subjectId) throws SQLException, ClassNotFoundException {
         ResultSet resultSet = this.queryTeacherBySubjectId(subjectId);

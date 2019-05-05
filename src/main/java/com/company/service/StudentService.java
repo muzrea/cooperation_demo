@@ -10,18 +10,11 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class StudentService {
-    private StudentDao studentDao;
+    private StudentDao studentDao = new StudentDao();
 
-    private Print print;
-    private Prompt prompt;
-    private Reader reader;
-
-    public StudentService() {
-        this.studentDao = new StudentDao();
-        this.print = new Print();
-        this.prompt = new Prompt();
-        this.reader = new Reader();
-    }
+    private Print print = new Print();
+    private Prompt prompt = new Prompt();
+    private Reader reader = new Reader();
 
     public void getAllStudent() throws SQLException, ClassNotFoundException {
         List<Student> students = this.studentDao.getAllStudent();

@@ -11,11 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StudentDao {
-    private BasicDao basicDao;
-
-    public StudentDao() {
-        this.basicDao = new BasicDao();
-    }
+    private BasicDao basicDao = new BasicDao();
 
     public List<Student> getAllStudent() throws SQLException, ClassNotFoundException {
         ResultSet resultSet = this.queryAllStudent();

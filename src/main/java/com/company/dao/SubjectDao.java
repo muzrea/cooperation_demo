@@ -12,11 +12,7 @@ import java.util.List;
 
 public class SubjectDao {
 
-    private BasicDao basicDao;
-
-    public SubjectDao() {
-        this.basicDao = new BasicDao();
-    }
+    private BasicDao basicDao = new BasicDao();
 
     public List<Subject> getSubjectByStudentId(int studentId) throws SQLException, ClassNotFoundException {
         ResultSet resultSet = this.querySubjectByStudentId(studentId);

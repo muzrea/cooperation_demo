@@ -9,14 +9,9 @@ import java.util.List;
 
 public class SubjectService {
 
-    private SubjectDao subjectDao;
+    private SubjectDao subjectDao = new SubjectDao();
 
-    private Print print;
-
-    public SubjectService() {
-        this.subjectDao = new SubjectDao();
-        this.print = new Print();
-    }
+    private Print print = new Print();
 
     public void getAllSubject() throws SQLException, ClassNotFoundException {
         List<Subject> subjects = this.subjectDao.getAllSubject();

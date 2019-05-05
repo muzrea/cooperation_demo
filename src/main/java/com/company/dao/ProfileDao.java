@@ -10,11 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProfileDao {
-    private BasicDao basicDao;
-
-    public ProfileDao() {
-        this.basicDao = new BasicDao();
-    }
+    private BasicDao basicDao = new BasicDao();
 
     public List<Profile> getProfile(int role_id) throws SQLException, ClassNotFoundException {
         ResultSet resultSet = this.queryProfileOfSpecificRole(role_id);

@@ -9,11 +9,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class UserDao {
-    private BasicDao basicDao;
-
-    public UserDao() {
-        this.basicDao = new BasicDao();
-    }
+    private BasicDao basicDao = new BasicDao();
 
     public User getUser(String username, String password) throws SQLException, ClassNotFoundException {
         ResultSet resultSet = this.queryUserIdAndRoleId(username, password);

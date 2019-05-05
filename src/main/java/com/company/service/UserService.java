@@ -7,12 +7,8 @@ import main.java.com.company.model.User;
 import java.sql.SQLException;
 
 public class UserService {
-    private UserDao userDao;
+    private UserDao userDao = new UserDao();
     private User user;
-
-    public UserService() {
-        this.userDao = new UserDao();
-    }
 
     public boolean login(String username, String password) throws SQLException, ClassNotFoundException {
         this.user = this.userDao.getUser(username, password);
