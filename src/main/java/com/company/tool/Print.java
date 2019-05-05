@@ -1,6 +1,7 @@
 package main.java.com.company.tool;
 
 import main.java.com.company.model.Student;
+import main.java.com.company.model.Subject;
 
 import java.util.List;
 
@@ -24,6 +25,13 @@ public class Print {
             System.out.print(student.getId() + ", " + student.getName() + ", ");
             student.getSubjects().forEach(subject -> System.out.println(subject.getScore()));
         });
+    }
+
+    public void printAllSubjectInfor(List<Subject> subjects) {
+        System.out.println();
+        subjects.forEach(subject -> System.out.println(subject.getId() + ", " +
+                subject.getName() + ", " +
+                subject.getTeacher().getName()));
     }
 
 }

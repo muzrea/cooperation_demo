@@ -6,6 +6,12 @@ public class Subject {
     private final Teacher teacher;
     private double score;
 
+    public Subject(int id, String name, Teacher teacher) {
+        this.id = id;
+        this.name = name;
+        this.teacher = teacher;
+    }
+
     public Subject(int id, String name, Teacher teacher, double score) {
         this.id = id;
         this.name = name;
@@ -15,6 +21,14 @@ public class Subject {
 
     public int getId() {
         return this.id;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public Teacher getTeacher() {
+        return this.teacher;
     }
 
     public double getScore() {

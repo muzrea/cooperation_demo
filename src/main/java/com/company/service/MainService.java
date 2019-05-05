@@ -13,6 +13,7 @@ public class MainService {
 
     private UserService userService = new UserService();
     private StudentService studentService = new StudentService();
+    private SubjectService subjectService = new SubjectService();
 
     public void mainService() throws SQLException, ClassNotFoundException {
         this.prompt.promptWelcome();
@@ -32,6 +33,9 @@ public class MainService {
                 break;
             case "1.1.4":
                 this.studentService.getStudentNameAndScoreBySubject();
+                break;
+            case "1.2.1":
+                this.subjectService.getAllSubject();
                 break;
             default:
                 break;
