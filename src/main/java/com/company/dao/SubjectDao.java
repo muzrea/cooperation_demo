@@ -1,6 +1,5 @@
 package main.java.com.company.dao;
 
-import main.java.com.company.model.Student;
 import main.java.com.company.model.Subject;
 import main.java.com.company.model.Teacher;
 
@@ -101,6 +100,22 @@ public class SubjectDao {
                 "INNER JOIN score ON subject.id = subject_id\n" +
                 "WHERE subject_id = " + subjectId + "\n" +
                 "AND student_id = " + studentId;
+        Connection connection = this.basicDao.getConnect();
+        Statement statement = this.basicDao.getStatement(connection);
+        return this.basicDao.executeQuerySQL(statement, sql);
+    }
+
+    public int getSubjectIdBySubjectName(String subjectName) throws SQLException, ClassNotFoundException {
+        ResultSet resultSet = this.querySubjectIdBySubjectName(subjectName);
+        int subjectId = 0;
+        while (resultSet.next()) {
+            subjectId = resultSet.getInt("id");
+        }
+        return subjectId;
+    }
+
+    private ResultSet querySubjectIdBySubjectName(String subjectName) throws SQLException, ClassNotFoundException {
+        String sql = "SELECT id FROM subject WHERE name = '" + subjectName + "'";
         Connection connection = this.basicDao.getConnect();
         Statement statement = this.basicDao.getStatement(connection);
         return this.basicDao.executeQuerySQL(statement, sql);

@@ -37,6 +37,10 @@ public class Prompt {
         System.out.println("\n请输入教师姓名：");
     }
 
+    public void promptInputSubjectName() {
+        System.out.println("\n请输入课程名称:");
+    }
+
     public void promptCurrentInfor() {
         System.out.println("\n当前记录为：");
     }

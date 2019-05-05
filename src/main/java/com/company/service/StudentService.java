@@ -46,4 +46,11 @@ public class StudentService {
         List<Student> students = this.studentDao.getStudentByTeacherName(teacherName);
         this.print.printStudentsAndScore(students);
     }
+
+    public void getStudentNameAndScoreBySubject() throws SQLException, ClassNotFoundException {
+        this.prompt.promptInputSubjectName();
+        String subjectName = this.reader.readUserInput();
+        List<Student> students = this.studentDao.getStudentBySubjectName(subjectName);
+        this.print.printStudentsAndScore(students);
+    }
 }

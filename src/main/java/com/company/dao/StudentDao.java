@@ -2,7 +2,6 @@ package main.java.com.company.dao;
 
 import main.java.com.company.model.Student;
 import main.java.com.company.model.Subject;
-import main.java.com.company.model.Teacher;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -98,5 +97,21 @@ public class StudentDao {
         Connection connection = this.basicDao.getConnect();
         Statement statement = this.basicDao.getStatement(connection);
         return this.basicDao.executeQuerySQL(statement, sql);
+    }
+
+    public List<Student> getStudentBySubjectName(String subjectName) throws SQLException, ClassNotFoundException {
+        SubjectDao subjectDao = new SubjectDao();
+        int subjectId = subjectDao.getSubjectIdBySubjectName(subjectName);
+        List<Integer> studentIdList = subjectDao.getStudentIdBySubjectId(subjectId);
+        List<Student> students = new ArrayList<>();
+        for (Integer studentId : studentIdList) {
+            Student student = this.getStudentById(studentId);
+            Subject subject = subjectDao.getSubjectByStudentIdAndSubjectId(studentId, subjectId);
+            List<Subject> subjects = new ArrayList<>();
+            subjects.add(subject);
+            student.setSubjects(subjects);
+            students.add(student);
+        }
+        return students;
     }
 }
