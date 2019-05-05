@@ -23,12 +23,12 @@ public class StudentService {
         this.reader = new Reader();
     }
 
-    public void getAllStudentInfor() throws SQLException, ClassNotFoundException {
+    public void getAllStudent() throws SQLException, ClassNotFoundException {
         List<Student> students = this.studentDao.getAllStudent();
         this.print.printAllStudentInfor(students);
     }
 
-    public void getStudentInforAndScoreByName() throws SQLException, ClassNotFoundException {
+    public void getStudentAndScoreByStudentName() throws SQLException, ClassNotFoundException {
         this.prompt.promptInputStudentName();
         String name = this.getStudentName();
         Student student = this.studentDao.getStudentByName(name);
@@ -40,7 +40,7 @@ public class StudentService {
         return this.reader.readUserInput();
     }
 
-    public void getStudentAndScoreByTeacher() throws SQLException, ClassNotFoundException {
+    public void getStudentNameAndScoreByTeacher() throws SQLException, ClassNotFoundException {
         this.prompt.promptInputTeacherName();
         String teacherName = this.reader.readUserInput();
         List<Student> students = this.studentDao.getStudentByTeacherName(teacherName);

@@ -18,8 +18,8 @@ public class SubjectDao {
         this.basicDao = new BasicDao();
     }
 
-    public List<Subject> getAllSubjectByStudentId(int studentId) throws SQLException, ClassNotFoundException {
-        ResultSet resultSet = this.queryAllSubjectByStudentId(studentId);
+    public List<Subject> getSubjectByStudentId(int studentId) throws SQLException, ClassNotFoundException {
+        ResultSet resultSet = this.querySubjectByStudentId(studentId);
         List<Subject> subjects = new ArrayList<>();
         while (resultSet.next()) {
             int id = resultSet.getInt("subject.id");
@@ -32,7 +32,7 @@ public class SubjectDao {
         return subjects;
     }
 
-    private ResultSet queryAllSubjectByStudentId(int studentId) throws SQLException, ClassNotFoundException {
+    private ResultSet querySubjectByStudentId(int studentId) throws SQLException, ClassNotFoundException {
         String sql = "SELECT subject.id, name, score " +
                 "FROM subject " +
                 "INNER JOIN score " +
@@ -45,7 +45,7 @@ public class SubjectDao {
 
     public int getSubjectIdByTeacherName(String teacherName) throws SQLException, ClassNotFoundException {
         Teacher teacher = new TeacherDao().getTeacherByName(teacherName);
-        ResultSet resultSet = this.querySubjectByTeacherId(teacher.getId());
+        ResultSet resultSet = this.querySubjectIdByTeacherId(teacher.getId());
         int subjectId = 0;
         while (resultSet.next()) {
             subjectId = resultSet.getInt("subject_id");
@@ -53,7 +53,7 @@ public class SubjectDao {
         return subjectId;
     }
 
-    private ResultSet querySubjectByTeacherId(int teacherId) throws SQLException, ClassNotFoundException {
+    private ResultSet querySubjectIdByTeacherId(int teacherId) throws SQLException, ClassNotFoundException {
         String sql = "SELECT subject_id " +
                 "FROM subject_teacher " +
                 "WHERE teacher_id = " + teacherId;

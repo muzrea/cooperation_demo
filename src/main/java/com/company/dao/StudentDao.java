@@ -48,7 +48,7 @@ public class StudentDao {
             int age = resultSet.getInt("age");
             String major = resultSet.getString("major");
             student = new Student(id, name, sex, age, major);
-            List<Subject> subjects = new SubjectDao().getAllSubjectByStudentId(id);
+            List<Subject> subjects = new SubjectDao().getSubjectByStudentId(id);
             student.setSubjects(subjects);
         }
         return student;

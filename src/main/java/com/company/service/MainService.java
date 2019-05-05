@@ -1,8 +1,6 @@
 package main.java.com.company.service;
 
-import main.java.com.company.dao.StudentDao;
 import main.java.com.company.model.MainMenu;
-import main.java.com.company.tool.Print;
 import main.java.com.company.tool.Prompt;
 import main.java.com.company.tool.Reader;
 
@@ -24,13 +22,13 @@ public class MainService {
         String option = this.getOption(mainMenu);
         switch (option) {
             case "1.1.1":
-                this.studentService.getAllStudentInfor();
+                this.studentService.getAllStudent();
                 break;
             case "1.1.2":
-                this.studentService.getStudentInforAndScoreByName();
+                this.studentService.getStudentAndScoreByStudentName();
                 break;
             case "1.1.3":
-                this.studentService.getStudentAndScoreByTeacher();
+                this.studentService.getStudentNameAndScoreByTeacher();
                 break;
             case "1.1.4":
                 this.studentService.getStudentNameAndScoreBySubject();
