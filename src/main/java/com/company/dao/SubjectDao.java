@@ -118,4 +118,22 @@ public class SubjectDao {
         return this.basicDao.executeQuerySQL(statement, SQL);
     }
 
+    public Subject getSubjectByName(String name) throws SQLException, ClassNotFoundException {
+        ResultSet resultSet = this.querySubjectByName(name);
+        Subject subject = null;
+        while (resultSet.next()) {
+            int id = resultSet.getInt("id");
+            Teacher teacher = new TeacherDao().getTeacherBySubjectId(id);
+            subject = new Subject(id, name, teacher);
+        }
+        return subject;
+    }
+
+    private ResultSet querySubjectByName(String name) throws SQLException, ClassNotFoundException {
+        String sql = "SELECT * FROM subject WHERE name = '" + name + "'";
+        Connection connection = this.basicDao.getConnect();
+        Statement statement = this.basicDao.getStatement(connection);
+        return this.basicDao.executeQuerySQL(statement, sql);
+    }
+
 }

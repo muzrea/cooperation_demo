@@ -34,4 +34,10 @@ public class Print {
                 subject.getTeacher().getName()));
     }
 
+    public void printSubjectInfor(Subject subject) {
+        System.out.println(subject.getId() + ", " +
+                subject.getName() + ", " +
+                subject.getTeacher().getName());
+    }
+
 }

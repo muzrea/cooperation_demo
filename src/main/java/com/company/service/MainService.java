@@ -37,6 +37,9 @@ public class MainService {
             case "1.2.1":
                 this.subjectService.getAllSubject();
                 break;
+            case "1.2.2":
+                this.subjectService.getSubjectByName();
+                break;
             default:
                 break;
         }
