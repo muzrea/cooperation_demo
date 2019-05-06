@@ -41,7 +41,11 @@ public class SubjectDao {
 
     public int getSubjectIdByTeacherName(String teacherName) throws SQLException, ClassNotFoundException {
         Teacher teacher = new TeacherDao().getTeacherByName(teacherName);
-        ResultSet resultSet = this.querySubjectIdByTeacherId(teacher.getId());
+        return this.getSubjectIdByTeacherId(teacher.getId());
+    }
+
+    public int getSubjectIdByTeacherId(int teacherId) throws SQLException, ClassNotFoundException {
+        ResultSet resultSet = this.querySubjectIdByTeacherId(teacherId);
         int subjectId = 0;
         while (resultSet.next()) {
             subjectId = resultSet.getInt("subject_id");
@@ -131,6 +135,26 @@ public class SubjectDao {
 
     private ResultSet querySubjectByName(String name) throws SQLException, ClassNotFoundException {
         String sql = "SELECT * FROM subject WHERE name = '" + name + "'";
+        Connection connection = this.basicDao.getConnect();
+        Statement statement = this.basicDao.getStatement(connection);
+        return this.basicDao.executeQuerySQL(statement, sql);
+    }
+
+    public Subject getSubjectByTeacherName(String teacherName) throws SQLException, ClassNotFoundException {
+        Teacher teacher = new TeacherDao().getTeacherByName(teacherName);
+        int subjectId = this.getSubjectIdByTeacherId(teacher.getId());
+        ResultSet resultSet = this.querySubjectById(subjectId);
+        Subject subject = null;
+        while (resultSet.next()) {
+            String name = resultSet.getString("name");
+            subject = new Subject(subjectId, name, teacher);
+        }
+        return subject;
+
+    }
+
+    private ResultSet querySubjectById(int id) throws SQLException, ClassNotFoundException {
+        String sql = "SELECT * FROM subject WHERE id = " + id;
         Connection connection = this.basicDao.getConnect();
         Statement statement = this.basicDao.getStatement(connection);
         return this.basicDao.executeQuerySQL(statement, sql);

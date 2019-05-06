@@ -28,4 +28,11 @@ public class SubjectService {
         Subject subject = this.subjectDao.getSubjectByName(name);
         this.print.printSubjectInfor(subject);
     }
+
+    public void getSubjectByTeacherName() throws SQLException, ClassNotFoundException {
+        this.prompt.promptInputTeacherName();
+        String teacherName = this.reader.readUserInput();
+        Subject subject = this.subjectDao.getSubjectByTeacherName(teacherName);
+        this.print.printSubjectInfor(subject);
+    }
 }

@@ -40,6 +40,9 @@ public class MainService {
             case "1.2.2":
                 this.subjectService.getSubjectByName();
                 break;
+            case "1.2.3":
+                this.subjectService.getSubjectByTeacherName();
+                break;
             default:
                 break;
         }
