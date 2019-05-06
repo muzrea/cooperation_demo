@@ -63,7 +63,7 @@ public class StudentDao {
         SubjectDao subjectDao = new SubjectDao();
         int subjectId = subjectDao.getSubjectIdByTeacherName(teacherName);
         List<Student> students = new ArrayList<>();
-        List<Integer> studentIdList = subjectDao.getStudentIdBySubjectId(subjectId);
+        List<Integer> studentIdList = this.getStudentIdBySubjectId(subjectId);
         for (Integer studentId : studentIdList) {
             Student student = getStudentById(studentId);
             Subject subject = subjectDao.getSubjectByStudentIdAndSubjectId(studentId, subjectId);
@@ -73,6 +73,25 @@ public class StudentDao {
             students.add(student);
         }
         return students;
+    }
+
+    public List<Integer> getStudentIdBySubjectId(int subjectId) throws SQLException, ClassNotFoundException {
+        ResultSet resultSet = this.queryStudentIdBySubjectId(subjectId);
+        List<Integer> idList = new ArrayList<>();
+        while (resultSet.next()) {
+            int studentId = resultSet.getInt("student_id");
+            idList.add(studentId);
+        }
+        return idList;
+    }
+
+    private ResultSet queryStudentIdBySubjectId(int subjectId) throws SQLException, ClassNotFoundException {
+        String sql = "SELECT student_id " +
+                "FROM score " +
+                "WHERE subject_id = " + subjectId;
+        Connection connection = this.basicDao.getConnect();
+        Statement statement = this.basicDao.getStatement(connection);
+        return this.basicDao.executeQuerySQL(statement, sql);
     }
 
     public Student getStudentById(int id) throws SQLException, ClassNotFoundException {
@@ -98,7 +117,7 @@ public class StudentDao {
     public List<Student> getStudentBySubjectName(String subjectName) throws SQLException, ClassNotFoundException {
         SubjectDao subjectDao = new SubjectDao();
         int subjectId = subjectDao.getSubjectIdBySubjectName(subjectName);
-        List<Integer> studentIdList = subjectDao.getStudentIdBySubjectId(subjectId);
+        List<Integer> studentIdList = this.getStudentIdBySubjectId(subjectId);
         List<Student> students = new ArrayList<>();
         for (Integer studentId : studentIdList) {
             Student student = this.getStudentById(studentId);

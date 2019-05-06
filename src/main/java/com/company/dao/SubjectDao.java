@@ -58,25 +58,6 @@ public class SubjectDao {
         return this.basicDao.executeQuerySQL(statement, sql);
     }
 
-    public List<Integer> getStudentIdBySubjectId(int subjectId) throws SQLException, ClassNotFoundException {
-        ResultSet resultSet = this.queryStudentIdBySubjectId(subjectId);
-        List<Integer> idList = new ArrayList<>();
-        while (resultSet.next()) {
-            int studentId = resultSet.getInt("student_id");
-            idList.add(studentId);
-        }
-        return idList;
-    }
-
-    private ResultSet queryStudentIdBySubjectId(int subjectId) throws SQLException, ClassNotFoundException {
-        String sql = "SELECT student_id " +
-                "FROM score " +
-                "WHERE subject_id = " + subjectId;
-        Connection connection = this.basicDao.getConnect();
-        Statement statement = this.basicDao.getStatement(connection);
-        return this.basicDao.executeQuerySQL(statement, sql);
-    }
-
     public Subject getSubjectByStudentIdAndSubjectId(int studentId, int subjectId) throws SQLException, ClassNotFoundException {
         ResultSet resultSet = this.querySubjectByStudentIdAndSubjectId(studentId, subjectId);
         Subject subject = null;
