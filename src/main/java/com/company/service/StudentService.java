@@ -18,7 +18,7 @@ public class StudentService {
 
     public void getAllStudent() throws SQLException, ClassNotFoundException {
         List<Student> students = this.studentDao.getAllStudent();
-        this.print.printAllStudentInfor(students);
+        this.print.printStudentList(students);
     }
 
     public void getStudentAndScoreByStudentName() throws SQLException, ClassNotFoundException {
@@ -33,13 +33,13 @@ public class StudentService {
         this.prompt.promptInputTeacherName();
         String teacherName = this.reader.readUserInput();
         List<Student> students = this.studentDao.getStudentByTeacherName(teacherName);
-        this.print.printStudentsAndScore(students);
+        this.print.printStudentListWithScore(students);
     }
 
     public void getStudentNameAndScoreBySubject() throws SQLException, ClassNotFoundException {
         this.prompt.promptInputSubjectName();
         String subjectName = this.reader.readUserInput();
         List<Student> students = this.studentDao.getStudentBySubjectName(subjectName);
-        this.print.printStudentsAndScore(students);
+        this.print.printStudentListWithScore(students);
     }
 }

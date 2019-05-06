@@ -19,7 +19,7 @@ public class SubjectService {
 
     public void getAllSubject() throws SQLException, ClassNotFoundException {
         List<Subject> subjects = this.subjectDao.getAllSubject();
-        this.print.printAllSubjectInfor(subjects);
+        this.print.printSubjectList(subjects);
     }
 
     public void getSubjectByName() throws SQLException, ClassNotFoundException {
